@@ -8,7 +8,7 @@
  *
  * Main module of the application.
  */
-angular.module('clientApp', ['ngRoute','restangular'])
+angular.module('clientApp', ['ngRoute','restangular','ngAnimate','ui.bootstrap'])
   .config(function ($routeProvider, RestangularProvider) {
 
     // Set the base URL for Restangular.
@@ -68,6 +68,7 @@ angular.module('clientApp', ['ngRoute','restangular'])
   })
   .filter('trusted', function ($sce) {
     return function(url) {
+      url = url.replace('watch?v=','embed/'); // to handle x-frame-options' to 'sameorigin' issue
       return $sce.trustAsResourceUrl(url);
     };
   });
